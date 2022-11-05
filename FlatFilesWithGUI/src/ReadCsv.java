@@ -1,7 +1,14 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.io.BufferedWriter;
+
 
 
 public class ReadCsv {
@@ -30,4 +37,20 @@ public class ReadCsv {
  		return filelines;
 		
 	}
+	
+	public void copyLines(String newTitle) throws IOException {
+		FileWriter fw = new FileWriter(newTitle);
+		BufferedWriter bw1 = new BufferedWriter(fw);
+		String lines = null;
+		while((lines = br.readLine()) != null) {
+			String[] line = lines.split(",");
+			String str = line[0] + ", " + line[1] + ", " + line[2];
+			bw1.write(str);
+			bw1.newLine();
+			bw1.flush();
+		}
+		br.close();
+		bw1.close();
+	}
+	
 }

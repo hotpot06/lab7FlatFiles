@@ -106,7 +106,7 @@ public class MyFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					String writing = readingFiles();
+					String writing = writingFiles();
 					writingLines.setText(writing);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -123,6 +123,18 @@ public class MyFrame extends JFrame {
 		ReadCsv rc;
 		rc = new ReadCsv(filename);
 		String l = rc.printLines(5);
+		return l;
+	}
+	
+	public String writingFiles() throws IOException {
+		String filename1 = readingFile.getText();
+		String filename2 = writingFile.getText();
+		ReadCsv rc1;
+		rc1 = new ReadCsv(filename1);
+		rc1.copyLines(filename2);
+		ReadCsv rc2;
+		rc2 = new ReadCsv(filename2);
+		String l = rc2.printLines(5);
 		return l;
 	}
 }
